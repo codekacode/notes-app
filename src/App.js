@@ -18,12 +18,24 @@ function App() {
     setCurrentNoteId(newNote.id)
   }
 
+  function findCurrentNote() {
+    return notes.find(note => {
+      return note.id === currentNoteId
+    }) || notes[0]
+  }
+
   return (
     <main>
-      
         {notes.length > 0 ?
-          <Split sizes={[30, 70]} direction="horizontal" className="split">
-            <Sidebar notes={notes} newNote={createNewNote} />:
+          <Split 
+            sizes={[30, 70]} 
+            direction="horizontal" 
+            className="split">
+            <Sidebar 
+              notes={notes} 
+              newNote={createNewNote} 
+              currentNote={findCurrentNote()} 
+              setCurrentNoteId={setCurrentNoteId} />:
           </Split> 
           :
           <div>
